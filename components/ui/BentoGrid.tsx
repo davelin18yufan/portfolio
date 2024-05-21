@@ -1,13 +1,13 @@
-import { cn } from "@/utils/cn"
 import { useState } from "react"
-
 import { IoCopyOutline } from "react-icons/io5"
-import TailwindCssButton from "../TailwindCssButton"
-// Also install this npm i --save-dev @types/react-lottie
 import Lottie from "react-lottie"
+
+import { cn } from "@/utils/cn"
+
 import { BackgroundGradientAnimation } from "./BackgroundGradientAnimation"
 import {GridGlobe} from "./GridGlobe"
 import animationData from "@/data/confetti.json"
+import TailwindCssButton from "../TailwindCssButton"
 
 export const BentoGrid = ({
   className,
@@ -19,7 +19,8 @@ export const BentoGrid = ({
   return (
     <div
       className={cn(
-        "grid md:auto-rows-[18rem] grid-cols-1 md:grid-cols-3 gap-4 max-w-7xl mx-auto ",
+        // change gap-4 to gap-8, change grid-cols-3 to grid-cols-5, remove md:auto-rows-[18rem], add responsive code
+        "grid grid-cols-1 md:grid-cols-6 lg:grid-cols-5 md:grid-row-7 gap-4 lg:gap-8 mx-auto",
         className
       )}
     >
@@ -33,7 +34,7 @@ export const BentoGridItem = ({
   id,
   title,
   description,
-  //   remove unnecessary things here
+  //   remove unecessary things here
   img,
   imgClassName,
   titleClassName,
@@ -48,15 +49,15 @@ export const BentoGridItem = ({
   titleClassName?: string
   spareImg?: string
 }) => {
-  const leftLists = ["React.js", "Next.js", "Typescript"]
-  const rightLists = ["Node.js", "SQL", "MongoDB"]
+  const leftLists = ["ReactJS", "NextJS", "Typescript"]
+  const rightLists = ["SQL", "MongoDB", "NodeJS"]
 
   const [copied, setCopied] = useState(false)
 
   const defaultOptions = {
     loop: copied,
     autoplay: copied,
-    animationData,
+    animationData: animationData,
     rendererSettings: {
       preserveAspectRatio: "xMidYMid slice",
     },
@@ -103,7 +104,7 @@ export const BentoGridItem = ({
               src={spareImg}
               alt={spareImg}
               //   width={220}
-              className="object-cover object-center size-full"
+              className="object-cover object-center w-full h-full"
             />
           )}
         </div>
@@ -121,7 +122,7 @@ export const BentoGridItem = ({
           )}
         >
           {/* change the order of the title and des, font-extralight, remove text-xs text-neutral-600 dark:text-neutral-300 , change the text-color */}
-          <div className="font-sans font-extralight md:max-w-32 md:text-xs lg:text-base text-sm text-[#C1C2D3] z-10">
+          <div className="font-sans font-extralight md:max-w-32 md:text-xs lg:text-base text-sm text-[#C1C2D3] z-20">
             {description}
           </div>
           {/* add text-3xl max-w-96 , remove text-neutral-600 dark:text-neutral-300*/}
@@ -132,13 +133,12 @@ export const BentoGridItem = ({
             {title}
           </div>
 
-          {/* for the github 3d globe */}
+          {/* github 3d globe */}
           {id === 2 && <GridGlobe />}
 
-          {/* Tech stack list div */}
+          {/* Tech stack list */}
           {id === 3 && (
             <div className="flex gap-1 lg:gap-5 w-fit absolute -right-3 lg:-right-2">
-              {/* tech stack lists */}
               <div className="flex flex-col gap-3 md:gap-3 lg:gap-8">
                 {leftLists.map((item, i) => (
                   <span
@@ -152,7 +152,7 @@ export const BentoGridItem = ({
                 <span className="lg:py-4 lg:px-3 py-4 px-3  rounded-lg text-center bg-[#10132E]"></span>
               </div>
               <div className="flex flex-col gap-3 md:gap-3 lg:gap-8">
-                <span className="lg:py-4 lg:px-3 py-4 px-3  rounded-lg text-center bg-[#10132E]" />
+                <span className="lg:py-4 lg:px-3 py-4 px-3  rounded-lg text-center bg-[#10132E]"></span>
                 {rightLists.map((item, i) => (
                   <span
                     key={i}
@@ -168,15 +168,12 @@ export const BentoGridItem = ({
           {id === 6 && (
             <div className="mt-5 relative">
               {/* button border magic from tailwind css buttons  */}
-              {/* add rounded-md h-8 md:h-8, remove rounded-full */}
-              {/* remove focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 */}
-              {/* add handleCopy() for the copy the text */}
               <div
                 className={`absolute -bottom-5 right-0 ${
                   copied ? "block" : "block"
                 }`}
               >
-                {/* <img src="/confetti.gif" alt="confetti" /> */}
+                <img src="/confetti.gif" alt="confetti" />
                 <Lottie options={defaultOptions} height={200} width={400} />
               </div>
 
