@@ -159,8 +159,8 @@ export const workExperience = [
   },
   {
     id: 3,
-    title: "Senior agent in Bank",
-    desc: "Responsible for software service including sales and problem solving",
+    title: "Senior Teller",
+    desc: "Responsible for digital finance service including sales and problem solving in bank",
     className: "md:col-span-2", // change to md:col-span-2
     thumbnail: "/exp3.svg",
   },
